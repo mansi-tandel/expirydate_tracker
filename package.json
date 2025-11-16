@@ -1,0 +1,38 @@
+{
+  "name": "expiry-date-tracker",
+  "version": "1.0.0",
+  "description": "A MERN stack application for tracking expiry dates with authentication",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "client": "cd client && npm start",
+    "dev:full": "concurrently \"npm run dev\" \"npm run client\""
+  },
+  "keywords": [
+    "mern",
+    "expiry",
+    "tracker",
+    "authentication",
+    "reminders"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "agenda": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.5.0",
+    "multer": "^1.4.5-lts.1",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^6.9.4"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1"
+  }
+}
