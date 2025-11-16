@@ -99,10 +99,6 @@ cd expiry-date-tracker
    - Rename `config.env` to `.env` (optional)
    - Update the MongoDB connection string in `config.env`:
      ```
-     MONGODB_URI=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/expiry-tracker?retryWrites=true&w=majority
-     JWT_SECRET=your_super_secret_jwt_key_here
-     PORT=5000
-     ```
 
 3. **Start Backend Server**
    ```bash
