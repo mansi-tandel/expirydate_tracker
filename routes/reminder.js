@@ -14,10 +14,8 @@ try {
 
 const getAgenda = () => (agendaModule && typeof agendaModule.getAgenda === 'function' ? agendaModule.getAgenda() : null);
 
-// Apply auth middleware to all reminder routes
 router.use(authMiddleware);
 
-// Multer for file uploads
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -37,7 +35,6 @@ const storage = multer.diskStorage({
   }
 });
 
-// Clean single image-only Multer config for POST /reminder
 const upload = multer({
   storage,
   fileFilter: (req, file, cb) => {
@@ -50,7 +47,6 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }
 });
 
-// Improved normalization helper
 function normalizeNotifyBeforeDays(input) {
   let v = input;
   if (typeof v === 'string') {
@@ -63,7 +59,6 @@ function normalizeNotifyBeforeDays(input) {
   }
   if (typeof v === 'number') return [v];
   if (!Array.isArray(v)) v = [v];
-  // FULLY recursive flattener
   const flattenNums = (arr) => arr.flatMap(el => {
     if (typeof el === 'string') {
       try {
@@ -118,7 +113,6 @@ router.post('/', upload.single('image'), [
   }
 });
 
-// GET /reminder - Get all reminders for user
 router.get('/', async (req, res) => {
   try {
     const reminders = await Reminder.find({ userId: req.user._id })
@@ -131,7 +125,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /reminder/search?q=milk - Search reminders by itemType (case-insensitive)
 router.get('/search', async (req, res) => {
   try {
     const query = (req.query.q || '').trim();
@@ -151,7 +144,6 @@ router.get('/search', async (req, res) => {
   }
 });
 
-// GET /reminder/:id - Get specific reminder
 router.get('/:id', async (req, res) => {
   try {
     const reminder = await Reminder.findOne({
@@ -170,7 +162,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// PUT /reminder/:id - Update reminder
 router.put('/:id', upload.single('image'), [
   body('itemType').trim().notEmpty().withMessage('Item type is required'),
   body('expiryDate').isISO8601().withMessage('Valid expiry date is required'),
@@ -192,7 +183,6 @@ router.put('/:id', upload.single('image'), [
   const { itemType, expiryDate, notifyBeforeDays } = req.body;
   const imagePath = req.file ? `/uploads/${req.file.filename}` : undefined;
 
-    // find existing to check old image
     const existing = await Reminder.findOne({ _id: req.params.id, userId: req.user._id });
     if (!existing) return res.status(404).json({ message: 'Reminder not found' });
 
@@ -209,7 +199,6 @@ router.put('/:id', upload.single('image'), [
       { new: true, runValidators: true }
     );
 
-    // remove old file if replaced
     if (req.file && existing.image) {
       try {
         const relative = existing.image.replace(/^\/+/, '');
@@ -224,7 +213,6 @@ router.put('/:id', upload.single('image'), [
       return res.status(404).json({ message: 'Reminder not found' });
     }
 
-    // cancel existing jobs related to this reminder and reschedule
     const agPut = getAgenda();
     if (agPut) {
       try {
@@ -251,7 +239,6 @@ router.put('/:id', upload.single('image'), [
   }
 });
 
-// DELETE /reminder/:id - Delete reminder
 router.delete('/:id', async (req, res) => {
   try {
     const reminder = await Reminder.findOneAndDelete({
@@ -263,7 +250,6 @@ router.delete('/:id', async (req, res) => {
       return res.status(404).json({ message: 'Reminder not found' });
     }
 
-    // remove scheduled jobs
     const agDel = getAgenda();
     if (agDel) {
       try {
@@ -273,7 +259,6 @@ router.delete('/:id', async (req, res) => {
       }
     }
 
-    // remove attachment file if exists
     if (reminder.attachment) {
       try {
         const filePath = path.join(__dirname, '..', reminder.attachment);

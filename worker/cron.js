@@ -74,9 +74,8 @@ async function processRemindersForToday() {
   }
 }
 
-// Schedule: every day at 09:00
 const cronExpression = '0 9 * * *';
-const timezone = process.env.CRON_TZ || undefined; // e.g., 'Asia/Kolkata', 'UTC'
+const timezone = process.env.CRON_TZ || undefined; 
 
 try {
   cron.schedule(
@@ -92,7 +91,6 @@ try {
   console.error('Failed to schedule cron job', e && (e.message || e));
 }
 
-// Optional: run immediately on startup for testing if env is set
 if (process.env.RUN_CRON_IMMEDIATELY === 'true') {
   processRemindersForToday().catch((e) => console.error('Immediate cron run failed', e));
 }

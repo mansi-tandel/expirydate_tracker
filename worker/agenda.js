@@ -1,4 +1,3 @@
-// Single clean Agenda worker implementation
 const Agenda = require('agenda');
 const mongoose = require('mongoose');
 const Reminder = require('../models/Reminder');

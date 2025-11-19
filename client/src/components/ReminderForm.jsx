@@ -6,7 +6,7 @@ import './ReminderForm.css';
 const ReminderForm = () => {
   const [formData, setFormData] = useState({
     itemType: '',
-    image: null, // now a File
+    image: null,
     expiryDate: '',
     notifyBeforeDays: [1, 3, 7]
   });
@@ -15,7 +15,6 @@ const ReminderForm = () => {
   const [imagePreview, setImagePreview] = useState('');
   const navigate = useNavigate();
 
-  // Helper: returns how many full days between today and expiryDate (inclusive/exclusive)
   const getDaysUntilExpiry = useCallback(() => {
     if (!formData.expiryDate) return null;
     const today = new Date();
@@ -25,7 +24,6 @@ const ReminderForm = () => {
     return Math.floor((expiry - today) / (1000 * 60 * 60 * 24));
   }, [formData.expiryDate]);
 
-  // Deselect any notifyBeforeDays now impossible (date moved earlier)
   useEffect(() => {
     const daysUntilExpiry = getDaysUntilExpiry();
     if (daysUntilExpiry == null) return;
@@ -77,7 +75,6 @@ const ReminderForm = () => {
       const formDataToSend = new FormData();
       formDataToSend.append('itemType', formData.itemType);
       formDataToSend.append('expiryDate', formData.expiryDate);
-      // Properly append each notifyBeforeDays value (do NOT JSON.stringify)
       formData.notifyBeforeDays.forEach(day =>
         formDataToSend.append('notifyBeforeDays', day)
       );
@@ -146,7 +143,6 @@ const ReminderForm = () => {
               />
             </div>
           </div>
-          {/* Image upload section */}
           <div className="form-group">
             <label htmlFor="image">Item Image (Optional)</label>
             <input

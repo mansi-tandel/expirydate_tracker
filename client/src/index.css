@@ -1,6 +1,4 @@
-/* Modern Design System - CSS Custom Properties */
 :root {
-  /* Color Palette - Modern & Accessible */
   --primary-50: #eff6ff;
   --primary-100: #dbeafe;
   --primary-500: #3b82f6;
@@ -31,7 +29,6 @@
   --error-500: #ef4444;
   --error-600: #dc2626;
   
-  /* Spacing Scale */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -43,7 +40,6 @@
   --space-12: 3rem;
   --space-16: 4rem;
   
-  /* Typography Scale */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
@@ -53,26 +49,22 @@
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
   
-  /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   
-  /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   
-  /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -98,7 +90,6 @@ code {
     monospace;
 }
 
-/* Global link styles - Remove underlines */
 a {
   text-decoration: none;
   color: inherit;
@@ -109,7 +100,6 @@ a:hover {
   text-decoration: none;
 }
 
-/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -117,7 +107,6 @@ a:hover {
   min-height: calc(100vh - 80px);
 }
 
-/* App wrapper */
 .App {
   min-height: 100vh;
   background: #ffffff;
@@ -145,7 +134,6 @@ a:hover {
   50% { opacity: 0.8; }
 }
 
-/* Navigation */
 .navbar {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(25px);
@@ -307,7 +295,6 @@ a:hover {
   box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
 }
 
-/* Buttons */
 .btn {
   padding: 0.875rem 2rem;
   border: none;
@@ -401,7 +388,6 @@ a:hover {
   transform: none !important;
 }
 
-/* Forms */
 .form-group {
   margin-bottom: 1.75rem;
   position: relative;
@@ -461,7 +447,6 @@ a:hover {
   transform: translateY(-1px);
 }
 
-/* Authentication Forms */
 .auth-container {
   min-height: calc(100vh - 80px);
   display: flex;
@@ -568,7 +553,6 @@ a:hover {
   transform: translateY(-1px);
 }
 
-/* Alerts */
 .alert {
   padding: 1.25rem 1.5rem;
   border-radius: 12px;
@@ -608,7 +592,6 @@ a:hover {
   border-color: #bfdbfe;
 }
 
-/* Loading Spinner */
 .loading-spinner {
   width: 20px;
   height: 20px;
@@ -624,7 +607,6 @@ a:hover {
   100% { transform: rotate(360deg); }
 }
 
-/* Cards */
 .card {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(15px);
@@ -688,7 +670,6 @@ a:hover {
   gap: 0.75rem;
 }
 
-/* Reminder Cards */
 .reminder-card {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(15px);
@@ -834,7 +815,6 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* Statistics Cards */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -901,7 +881,6 @@ a:hover {
   letter-spacing: 0.5px;
 }
 
-/* Search Form */
 .search-form {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -938,7 +917,6 @@ a:hover {
   margin-bottom: 0;
 }
 
-/* Floating Action Button */
 .fab {
   position: fixed;
   bottom: 2.5rem;
@@ -991,7 +969,6 @@ a:hover {
   z-index: 1;
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
   padding: 4rem 2rem;
@@ -1027,7 +1004,6 @@ a:hover {
   font-weight: 500;
 }
 
-/* Enhanced Form Elements */
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
@@ -1066,7 +1042,6 @@ a:hover {
   cursor: pointer;
 }
 
-/* Image Preview */
 .image-preview {
   width: 100%;
   max-width: 200px;
@@ -1084,7 +1059,6 @@ a:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -1169,7 +1143,6 @@ a:hover {
   }
 }
 
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1228,7 +1201,6 @@ a:hover {
   animation: pulse 2s infinite;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -1248,7 +1220,6 @@ a:hover {
   background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
 }
 
-/* Selection */
 ::selection {
   background: rgba(59, 130, 246, 0.2);
   color: #1e293b;
@@ -1259,7 +1230,6 @@ a:hover {
   color: #1e293b;
 }
 
-/* Enhanced Focus States */
 *:focus {
   outline: none;
 }
@@ -1269,7 +1239,6 @@ a:hover {
   outline-offset: 2px;
 }
 
-/* Improved Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -1281,7 +1250,6 @@ p {
   color: #4b5563;
 }
 
-/* Enhanced Button States */
 .btn:active {
   transform: translateY(-1px);
 }
@@ -1290,7 +1258,6 @@ p {
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
-/* Improved Form Validation */
 .form-group.error input,
 .form-group.error textarea,
 .form-group.error select {

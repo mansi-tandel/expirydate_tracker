@@ -28,7 +28,6 @@ function App() {
     setToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    // redirect user to login page after logout
     try {
       navigate('/login', { replace: true });
     } catch (e) {

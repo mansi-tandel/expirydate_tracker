@@ -11,7 +11,6 @@ const Login = (props) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // support both prop and outlet context for login
   const outletContext = useOutletContext?.() || {};
   const login = props.login || outletContext.login;
 

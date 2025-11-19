@@ -171,7 +171,6 @@
   font-size: var(--text-sm);
 }
 
-/* Mobile Navigation */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -278,7 +277,6 @@
   margin-top: var(--space-2);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;

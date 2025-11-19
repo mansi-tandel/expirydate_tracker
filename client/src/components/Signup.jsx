@@ -14,7 +14,6 @@ const Signup = () => {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // get login function from App via Outlet context
   const outletContext = useOutletContext?.() || {};
   const login = outletContext.login;
 
@@ -27,7 +26,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loading) return; // prevent double submit
+    if (loading) return; 
     setError('');
     setSuccess('');
 
@@ -51,7 +50,6 @@ const Signup = () => {
       });
       if (response.status === 200 || response.status === 201) {
         setSuccess('Signup successful!');
-        // Auto-login user and redirect to home
         if (typeof login === 'function') {
           login(response.data.token, response.data.user);
         }

@@ -58,8 +58,6 @@ const ReminderList = () => {
     return { total, expired, warning, safe };
   };
 
-  // read optional route param to filter view: 'safe', 'expiring-soon', 'expired', 'all'
-  // default (no param) = 'overview' which shows stats only (no list)
   const params = useParams();
   const viewFilter = params.filter ?? 'overview';
 

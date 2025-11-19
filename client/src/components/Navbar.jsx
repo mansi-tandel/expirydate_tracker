@@ -20,7 +20,6 @@ const Navbar = ({ user, logout }) => {
           <span className="brand-text">ExpiryTracker</span>
         </Link>
         
-        {/* Desktop Navigation */}
         <ul className="navbar-nav desktop-nav">
           {user ? (
             <>
@@ -84,7 +83,6 @@ const Navbar = ({ user, logout }) => {
           )}
         </ul>
 
-        {/* Mobile Menu Button */}
         <button 
           className="mobile-menu-btn"
           onClick={toggleMobileMenu}
@@ -98,7 +96,6 @@ const Navbar = ({ user, logout }) => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="mobile-nav">
           <ul className="mobile-nav-list">
