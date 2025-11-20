@@ -19,7 +19,15 @@ function defineJobs(ag) {
       const reminder = await Reminder.findById(reminderId);
       if (!reminder) return;
 
-      const already = (reminder.notificationsSent || []).some(n => n.daysBefore === daysBefore);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const already = (reminder.notificationsSent || []).some(n => {
+        if (n.daysBefore !== daysBefore) return false;
+        if (!n.sentAt) return true;
+        const sentDate = new Date(n.sentAt);
+        sentDate.setHours(0, 0, 0, 0);
+        return sentDate.getTime() === today.getTime();
+      });
       if (already) return;
 
       const user = await User.findById(reminder.userId).select('-password');

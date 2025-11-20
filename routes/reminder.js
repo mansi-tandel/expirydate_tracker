@@ -106,6 +106,24 @@ router.post('/', upload.single('image'), [
       notifyBeforeDays: notifyBeforeDays || [1, 3, 7]
     });
     await reminder.save();
+
+    const agPost = getAgenda();
+    if (agPost) {
+      try {
+        for (const days of reminder.notifyBeforeDays) {
+          const notifyDate = new Date(reminder.expiryDate);
+          notifyDate.setDate(notifyDate.getDate() - days);
+          if (notifyDate > new Date()) {
+            await agPost.schedule(notifyDate, 'send-notification', { reminderId: reminder._id, daysBefore: days });
+          } else {
+            await agPost.now('send-notification', { reminderId: reminder._id, daysBefore: days });
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to schedule agenda jobs for new reminder', e.message || e);
+      }
+    }
+
     res.status(201).json({ message: 'Reminder created successfully', reminder });
   } catch (error) {
     console.error('Create reminder error:', error);
